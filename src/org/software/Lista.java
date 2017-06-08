@@ -18,7 +18,7 @@ import gnu.io.SerialPortEvent;
 public class Lista{
 	
 	public List<Datos> list(){
-
+		
 		//crear coneccion local
 	    MongoClient mongoClientLocal = new MongoClient();
 	    MongoDatabase databaseLocal = mongoClientLocal.getDatabase("Medi_flores");
