@@ -3,24 +3,16 @@ package org.software;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+public class Test {
 
-@Path("/service")
-public class Listar {
-	
-	@GET
-	@Path("/json")
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<Datos> prom(){
+	public static void main(String[] args) {
 		
+
 		Lista list = new Lista();		
 		List<Datos> datos = list.list();	
 
 
-		int iset = 0;
+		/*int iset = 0;
     	int ivirg = 0;
     	int iversi = 0;
     	
@@ -123,10 +115,8 @@ public class Listar {
     	
     	listar.add(dato1);
     	listar.add(dato2);
-    	listar.add(dato3);
-    	
-    	return listar;
-	}
+    	listar.add(dato3);*/
 
+	}
 
 }

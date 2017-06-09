@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bson.Document;
 
+import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
@@ -20,23 +21,29 @@ public class Lista{
 	public List<Datos> list(){
 		
 		//crear coneccion local
-	    MongoClient mongoClientLocal = new MongoClient();
-	    MongoDatabase databaseLocal = mongoClientLocal.getDatabase("Medi_flores");
+	    MongoClient mongoClientLocal = new MongoClient("localhost",27017);
+	    //MongoDatabase databaseLocal = mongoClientLocal.getDatabase("Medi_flores");
 	    //obtiene la coleccion local y si no la tiene la crea
-	    DBCollection db = (DBCollection) databaseLocal.getCollection("Datos");
 	    
-	    DBCursor cursor = db.find();
+	    DB db = mongoClientLocal.getDB("Medi_flores");
+	    DBCollection coleccion = db.getCollection("Datos");
+	    
+	    for(String n : db.getCollectionNames()){
+	    	System.out.println(n);
+	    }
+	    
+	    DBCursor cursor = coleccion.find();
 	    List<Datos> datos = new ArrayList<>();
 	    
 	    while(cursor.hasNext()){
 	    	Datos dato = new Datos();
 	    	DBObject dbob = cursor.next();
 	    	
-	    	dato.setSl((double)dbob.get("sl"));
-	    	dato.setSw((double)dbob.get("sw"));
-	    	dato.setPl((double)dbob.get("pl"));
-	    	dato.setPw((double)dbob.get("pw"));
-	    	dato.setCategoria((String)dbob.get("categoria"));
+	    	dato.setSl((double)dbob.get("Sepal_length"));
+	    	dato.setSw((double)dbob.get("Sepal_Width"));
+	    	dato.setPl((double)dbob.get("Petal_length"));
+	    	dato.setPw((double)dbob.get("Petal_Width"));
+	    	dato.setCategoria((String)dbob.get("Categoria"));
 	    	
 	    	datos.add(dato);
 	    }
